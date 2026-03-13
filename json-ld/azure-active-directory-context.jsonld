@@ -1,0 +1,428 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://graph.microsoft.com/v1.0/$metadata#",
+    "msgraph": "https://graph.microsoft.com/v1.0/$metadata#",
+    "schema": "https://schema.org/",
+    "entra": "https://learn.microsoft.com/en-us/graph/api/resources/",
+    "scim": "urn:ietf:params:scim:schemas:core:2.0:",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "org": "http://www.w3.org/ns/org#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "User": {
+      "@id": "msgraph:users",
+      "@context": {
+        "id": {
+          "@id": "msgraph:users/id",
+          "@type": "xsd:string"
+        },
+        "displayName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "givenName": {
+          "@id": "schema:givenName",
+          "@type": "xsd:string"
+        },
+        "surname": {
+          "@id": "schema:familyName",
+          "@type": "xsd:string"
+        },
+        "mail": {
+          "@id": "schema:email",
+          "@type": "xsd:string"
+        },
+        "userPrincipalName": {
+          "@id": "msgraph:users/userPrincipalName",
+          "@type": "xsd:string"
+        },
+        "jobTitle": {
+          "@id": "schema:jobTitle",
+          "@type": "xsd:string"
+        },
+        "department": {
+          "@id": "org:unitOf",
+          "@type": "xsd:string"
+        },
+        "officeLocation": {
+          "@id": "schema:workLocation",
+          "@type": "xsd:string"
+        },
+        "businessPhones": {
+          "@id": "schema:telephone",
+          "@container": "@set"
+        },
+        "mobilePhone": {
+          "@id": "vcard:hasTelephone",
+          "@type": "xsd:string"
+        },
+        "city": {
+          "@id": "schema:addressLocality",
+          "@type": "xsd:string"
+        },
+        "state": {
+          "@id": "schema:addressRegion",
+          "@type": "xsd:string"
+        },
+        "country": {
+          "@id": "schema:addressCountry",
+          "@type": "xsd:string"
+        },
+        "postalCode": {
+          "@id": "schema:postalCode",
+          "@type": "xsd:string"
+        },
+        "streetAddress": {
+          "@id": "schema:streetAddress",
+          "@type": "xsd:string"
+        },
+        "companyName": {
+          "@id": "schema:worksFor",
+          "@type": "xsd:string"
+        },
+        "employeeId": {
+          "@id": "msgraph:users/employeeId",
+          "@type": "xsd:string"
+        },
+        "employeeType": {
+          "@id": "msgraph:users/employeeType",
+          "@type": "xsd:string"
+        },
+        "accountEnabled": {
+          "@id": "msgraph:users/accountEnabled",
+          "@type": "xsd:boolean"
+        },
+        "createdDateTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "usageLocation": {
+          "@id": "msgraph:users/usageLocation",
+          "@type": "xsd:string"
+        },
+        "preferredLanguage": {
+          "@id": "schema:knowsLanguage",
+          "@type": "xsd:string"
+        },
+        "userType": {
+          "@id": "msgraph:users/userType",
+          "@type": "xsd:string"
+        },
+        "mailNickname": {
+          "@id": "msgraph:users/mailNickname",
+          "@type": "xsd:string"
+        },
+        "otherMails": {
+          "@id": "msgraph:users/otherMails",
+          "@container": "@set"
+        },
+        "proxyAddresses": {
+          "@id": "msgraph:users/proxyAddresses",
+          "@container": "@set"
+        },
+        "onPremisesSyncEnabled": {
+          "@id": "msgraph:users/onPremisesSyncEnabled",
+          "@type": "xsd:boolean"
+        },
+        "memberOf": {
+          "@id": "org:memberOf",
+          "@type": "@id",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Group": {
+      "@id": "msgraph:groups",
+      "@context": {
+        "id": {
+          "@id": "msgraph:groups/id",
+          "@type": "xsd:string"
+        },
+        "displayName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "mail": {
+          "@id": "schema:email",
+          "@type": "xsd:string"
+        },
+        "mailEnabled": {
+          "@id": "msgraph:groups/mailEnabled",
+          "@type": "xsd:boolean"
+        },
+        "mailNickname": {
+          "@id": "msgraph:groups/mailNickname",
+          "@type": "xsd:string"
+        },
+        "securityEnabled": {
+          "@id": "msgraph:groups/securityEnabled",
+          "@type": "xsd:boolean"
+        },
+        "groupTypes": {
+          "@id": "msgraph:groups/groupTypes",
+          "@container": "@set"
+        },
+        "visibility": {
+          "@id": "msgraph:groups/visibility",
+          "@type": "xsd:string"
+        },
+        "createdDateTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "renewedDateTime": {
+          "@id": "msgraph:groups/renewedDateTime",
+          "@type": "xsd:dateTime"
+        },
+        "classification": {
+          "@id": "msgraph:groups/classification",
+          "@type": "xsd:string"
+        },
+        "isAssignableToRole": {
+          "@id": "msgraph:groups/isAssignableToRole",
+          "@type": "xsd:boolean"
+        },
+        "members": {
+          "@id": "org:hasMember",
+          "@type": "@id",
+          "@container": "@set"
+        },
+        "owners": {
+          "@id": "msgraph:groups/owners",
+          "@type": "@id",
+          "@container": "@set"
+        },
+        "membershipRule": {
+          "@id": "msgraph:groups/membershipRule",
+          "@type": "xsd:string"
+        },
+        "onPremisesSyncEnabled": {
+          "@id": "msgraph:groups/onPremisesSyncEnabled",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Application": {
+      "@id": "msgraph:applications",
+      "@context": {
+        "id": {
+          "@id": "msgraph:applications/id",
+          "@type": "xsd:string"
+        },
+        "appId": {
+          "@id": "msgraph:applications/appId",
+          "@type": "xsd:string"
+        },
+        "displayName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "createdDateTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "identifierUris": {
+          "@id": "msgraph:applications/identifierUris",
+          "@container": "@set",
+          "@type": "@id"
+        },
+        "signInAudience": {
+          "@id": "msgraph:applications/signInAudience",
+          "@type": "xsd:string"
+        },
+        "publisherDomain": {
+          "@id": "msgraph:applications/publisherDomain",
+          "@type": "xsd:string"
+        },
+        "web": {
+          "@id": "msgraph:applications/web",
+          "@context": {
+            "homePageUrl": {
+              "@id": "schema:url",
+              "@type": "@id"
+            },
+            "redirectUris": {
+              "@id": "msgraph:applications/web/redirectUris",
+              "@container": "@set",
+              "@type": "@id"
+            },
+            "logoutUrl": {
+              "@id": "msgraph:applications/web/logoutUrl",
+              "@type": "@id"
+            }
+          }
+        },
+        "spa": {
+          "@id": "msgraph:applications/spa",
+          "@context": {
+            "redirectUris": {
+              "@id": "msgraph:applications/spa/redirectUris",
+              "@container": "@set",
+              "@type": "@id"
+            }
+          }
+        },
+        "requiredResourceAccess": {
+          "@id": "msgraph:applications/requiredResourceAccess",
+          "@container": "@set"
+        },
+        "appRoles": {
+          "@id": "msgraph:applications/appRoles",
+          "@container": "@set"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "ServicePrincipal": {
+      "@id": "msgraph:servicePrincipals",
+      "@context": {
+        "id": {
+          "@id": "msgraph:servicePrincipals/id",
+          "@type": "xsd:string"
+        },
+        "appId": {
+          "@id": "msgraph:servicePrincipals/appId",
+          "@type": "xsd:string"
+        },
+        "displayName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "appDisplayName": {
+          "@id": "msgraph:servicePrincipals/appDisplayName",
+          "@type": "xsd:string"
+        },
+        "accountEnabled": {
+          "@id": "msgraph:servicePrincipals/accountEnabled",
+          "@type": "xsd:boolean"
+        },
+        "appOwnerOrganizationId": {
+          "@id": "msgraph:servicePrincipals/appOwnerOrganizationId",
+          "@type": "xsd:string"
+        },
+        "appRoleAssignmentRequired": {
+          "@id": "msgraph:servicePrincipals/appRoleAssignmentRequired",
+          "@type": "xsd:boolean"
+        },
+        "servicePrincipalType": {
+          "@id": "msgraph:servicePrincipals/servicePrincipalType",
+          "@type": "xsd:string"
+        },
+        "servicePrincipalNames": {
+          "@id": "msgraph:servicePrincipals/servicePrincipalNames",
+          "@container": "@set"
+        },
+        "homepage": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "loginUrl": {
+          "@id": "msgraph:servicePrincipals/loginUrl",
+          "@type": "@id"
+        },
+        "logoutUrl": {
+          "@id": "msgraph:servicePrincipals/logoutUrl",
+          "@type": "@id"
+        },
+        "replyUrls": {
+          "@id": "msgraph:servicePrincipals/replyUrls",
+          "@container": "@set",
+          "@type": "@id"
+        },
+        "signInAudience": {
+          "@id": "msgraph:servicePrincipals/signInAudience",
+          "@type": "xsd:string"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        },
+        "notificationEmailAddresses": {
+          "@id": "msgraph:servicePrincipals/notificationEmailAddresses",
+          "@container": "@set"
+        },
+        "oauth2PermissionScopes": {
+          "@id": "msgraph:servicePrincipals/oauth2PermissionScopes",
+          "@container": "@set"
+        },
+        "appRoles": {
+          "@id": "msgraph:servicePrincipals/appRoles",
+          "@container": "@set"
+        },
+        "appRoleAssignments": {
+          "@id": "msgraph:servicePrincipals/appRoleAssignments",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "DirectoryObject": {
+      "@id": "msgraph:directoryObjects",
+      "@context": {
+        "id": {
+          "@id": "msgraph:directoryObjects/id",
+          "@type": "xsd:string"
+        },
+        "deletedDateTime": {
+          "@id": "msgraph:directoryObjects/deletedDateTime",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "AppRoleAssignment": {
+      "@id": "msgraph:appRoleAssignments",
+      "@context": {
+        "id": {
+          "@id": "msgraph:appRoleAssignments/id",
+          "@type": "xsd:string"
+        },
+        "appRoleId": {
+          "@id": "msgraph:appRoleAssignments/appRoleId",
+          "@type": "xsd:string"
+        },
+        "principalId": {
+          "@id": "msgraph:appRoleAssignments/principalId",
+          "@type": "xsd:string"
+        },
+        "principalDisplayName": {
+          "@id": "msgraph:appRoleAssignments/principalDisplayName",
+          "@type": "xsd:string"
+        },
+        "principalType": {
+          "@id": "msgraph:appRoleAssignments/principalType",
+          "@type": "xsd:string"
+        },
+        "resourceId": {
+          "@id": "msgraph:appRoleAssignments/resourceId",
+          "@type": "xsd:string"
+        },
+        "resourceDisplayName": {
+          "@id": "msgraph:appRoleAssignments/resourceDisplayName",
+          "@type": "xsd:string"
+        },
+        "createdDateTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}
