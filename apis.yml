@@ -3,7 +3,7 @@ description: Microsoft Azure Active Directory (Azure AD), now Microsoft Entra ID
 image: https://docs.microsoft.com/azure/media/index/active-directory.svg
 url: https://azure.microsoft.com/en-us/services/active-directory/
 created: '2024-01-15'
-modified: '2026-03-03'
+modified: '2026-03-16'
 specificationVersion: '0.18'
 tags:
 - Identity
